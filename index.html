@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Página Não Encontrada</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0a0a0a;
+      color: #00ffcc;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      padding: 40px 20px;
+    }
+    h1, h2, h3 {
+      margin-bottom: 10px;
+    }
+    p {
+      margin: 5px 0;
+      color: #bbb;
+    }
+    button {
+      background-color: #111;
+      color: #00ffcc;
+      border: 1px solid #00ffcc;
+      padding: 10px 20px;
+      margin: 10px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00ffcc;
+      color: #000;
+    }
+    .fase {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 600px;
+    }
+    #inicio, #final {
+      text-align: center;
+    }
+    #hidden-btn {
+      background: none;
+      border: none;
+      color: transparent;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+    }
+    .terminal {
+      background-color: #111;
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid #00ffcc;
+      width: 100%;
+      max-width: 600px;
+      height: 150px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="inicio">
+    <h1>404 - Página Não Encontrada</h1>
+    <p>Bom, você não deveria estar aqui. Talvez... exista um botão secreto. Quem sabe?</p>
+    <button id="hidden-btn" onclick="mostrarFase(1)">.</button>
+  </div>
+
+  <div id="fase1" class="fase">
+    <h2>Capítulo 1: O Chamado</h2>
+    <p>Você encontrou o primeiro sinal. Há algo escondido nas camadas da rede. Mas antes de continuar...</p>
+    <p><strong>Quiz:</strong> Qual linguagem roda diretamente no navegador?</p>
+    <button onclick="verificar(1, true)">JavaScript</button>
+    <button onclick="verificar(1, false)">Python</button>
+    <button onclick="verificar(1, false)">C++</button>
+  </div>
+
+  <div id="fase2" class="fase">
+    <h2>Capítulo 2: O Código Perdido</h2>
+    <p>Você recebeu uma mensagem interceptada. Os rastros do Projeto RAVEN estão escondidos em códigos binários.</p>
+    <div class="terminal" id="msg">
+      01010011 01100101 01100111 01110101 01100101 00100000 01101111 00100000 01110011 01101001 01101110 01100001 01101100
+    </div>
+    <p><strong>Quiz:</strong> O que essa mensagem quer dizer?</p>
+    <button onclick="verificar(2, false)">Sistema ativo</button>
+    <button onclick="verificar(2, true)">Segue o sinal</button>
+    <button onclick="verificar(2, false)">Código corrompido</button>
+  </div>
+
+  <div id="fase3" class="fase">
+    <h2>Capítulo 3: A Porta</h2>
+    <p>Você se aproxima de uma descoberta. Mas só poderá entrar se decifrar o último enigma:</p>
+    <p><em>“Estou em toda web. Me escondo em links. Começo com <code>&lt;</code> e posso ser a chave.”</em></p>
+    <button onclick="verificar(3, true)">HTML</button>
+    <button onclick="verificar(3, false)">CSS</button>
+    <button onclick="verificar(3, false)">Python</button>
+  </div>
+
+  <div id="final" class="fase">
+    <h2>Capítulo 4: A Revelação</h2>
+    <p>⚠️ Parabéns. Você completou o primeiro acesso ao Projeto RAVEN.</p>
+    <p>Dentro da camada mais escura da web, verdades ocultas esperam por olhos atentos. Você está pronto para ir mais fundo?</p>
+    <button onclick="reiniciar()">🔁 Jogar de novo</button>
+  </div>
+
+  <script>
+    function mostrarFase(num) {
+      document.getElementById('inicio').style.display = 'none';
+      document.getElementById('fase' + num).style.display = 'flex';
+    }
+
+    function verificar(fase, correto) {
+      if (correto) {
+        alert('✅ Correto!');
+        document.getElementById('fase' + fase).style.display = 'none';
+        if (fase < 3) {
+          document.getElementById('fase' + (fase + 1)).style.display = 'flex';
+        } else {
+          document.getElementById('final').style.display = 'flex';
+        }
+      } else {
+        alert('❌ Errado. Tente novamente.');
+      }
+    }
+
+    function reiniciar() {
+      document.querySelectorAll('.fase').forEach(div => div.style.display = 'none');
+      document.getElementById('inicio').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
